@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td, tbody { border: 1px solid;}
+
+    </style>
+   
+
+</head>
+<body>
+    <h2> DOM </h2>
+    <h3> buscando elementos </h3>
+        <table>
+            <tr> <td> metodo    </td>   <td> descripcion </td> </tr>
+            <tr> <td> document.getElementById(id) </td>	<td>            Find an element by element id </td></tr>
+            <tr> <td> document.getElementsByTagName(name) </td>	<td>    busca por la etiqueta html, devuelve una lista  </td></tr>
+            <tr> <td> document.getElementsByClassName(name) </td>	<td>Find elements by class name,  retorna una lista </td></tr>
+            <tr><td> document.querySelectorAll()</td><td> const x = document.querySelectorAll("p.intro"); <br> retorna una lista de todos los elementos p con class="intro".</td></tr>
+            <tr> <td>NOTA: en realidad no son listas como tal,<br> ya que no se pueden usar los metodos de los arrays, <br>  pero si se puede recorrer por indices como las listas</td></tr>
+        </table>
+    <h3> cambiando elementos </h3>
+        <table>
+            <tr> <td> propiedad    </td><td> descripcion </td></tr>
+            <tr> <td> element.innerHTML =  new html content </td><td> Change the inner HTML of an element </td></tr>
+            <tr> <td> element.attribute = new value         </td><td>Change the attribute value of an HTML element por ejemplo element.id = "id1" </td></tr>
+            <tr> <td> element.style.property = new style    </td><td>Change the style of an HTML element por ejemplo element.style.borderColor = "black";</td></tr>
+            <tr> <td> metodo: element.setAttribute(attribute, value)  </td><td>Change the attribute value of an HTML element</td></tr>
+        </table>
+
+    <h3> agregando y borrando elementos</h3>
+        <button onclick="crear_div()" > clic para crear nuevo div </button>
+        <button onclick="delete_divs()" > clic para borrar </button>
+        
+        <div id="tablero" style="display:flex; 
+                                background-color: chartreuse; 
+                                width: 500px;
+                                height: 200px;">
+        </div>
+      
+        <table >
+            <tbody><tr>
+            <th style="width:50%">Method</th>
+            <th>Description</th>
+            </tr>
+            <tr>
+              <td>document.createElement(<em>element</em>)</td>
+              <td>Create an HTML element</td>
+            </tr>
+            <tr>
+              <td>document.removeChild(<em>element</em>)</td>
+              <td>Remove an HTML element, también se puede usar solo remove, element.remove()</td>
+            </tr>
+            <tr>
+              <td>document.appendChild(<em>element</em>)</td>
+              <td>Add an HTML element a lo ultimo del padre <br> insertBefore() lo agrega en un lugar específico</td>
+            </tr>
+            
+            <tr>
+              <td>document.replaceChild(<em>new, old</em>)</td>
+              <td>Replace an HTML element</td>
+            </tr>
+            <tr>
+              <td>document.write(<em>text</em>)</td>
+              <td>Write into the HTML output stream</td>
+            </tr>
+            </tbody></table>
+
+<!-- ----------------------------------------------------------------- -->
+<hr>           
+    <h3> EVENTOS </h3>        
+        <p> ejecutar con un click: <br> document.getElementById(id).onclick = function(){code}</p>
+
+        <div>ejecuta cuando pasa el mouse: <br> onmouseover=""  onmouseout="" 
+            <div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+            style="background-color:red; width:120px; height:20px; padding:40px;">
+            Mouse Over Me</div> 
+        </div>
+
+
+        <div> ejecuta mientras deja presionado el click <br> onmousedown="" onmouseup=""
+          <div onmousedown="mDown(this)" onmouseup="mUp(this)"
+          style="background-color:blue;width:90px;height:20px;padding:40px;">
+          Click Me
+          </div>
+        </div>
+
+        <p> ejecuta al enviar: <br> 
+            el atriubo de los formularios onsubmit = "funcion()" util para hacer validaciones
+            <br> tambien se puede usar required en el input del form
+        </p>
+
+        <p> ejecuta cuando carga la pagina <br> onload = funcion() </p>
+        <p>ejecuta cuando cambia: <br> enter your name: <input type="text" id="fname" onchange="upperCase()"></p>
+
+        <p> se pueden agregar variaas funciones para diferentes eventos con el metodo element.addEventListener()<br> 
+            <pre>
+                element.addEventListener("mouseover", myFunction);
+                element.addEventListener("click", mySecondFunction);
+                element.addEventListener("mouseout", myThirdFunction);
+            </pre>
+        </p>
+    
+
+<!-- ----------------------------------------------------------------- -->
+<hr> 
+
+        <h2> BOM </h2>
+            <P>permite que JavaScript "hable con" el navegador.
+            <pre> 
+        let w = window.innerWidth;
+        let h = window.innerHeight; 
+            </pre>
+
+            El objeto window.screen contiene información sobre la pantalla del usuario.
+            <pre>
+        screen.width
+        screen.height
+        screen.availWidth
+        screen.availHeight
+        screen.colorDepth
+        screen.pixelDepth
+            </pre>
+            se pueden ejecutar funciones con intervalos de tiempo <br>
+            setTimeout(function, milliseconds), ejecuta la funcion despues de un determindo tiempo
+            setInterval(function, milliseconds), repite la funcion cada intervalo de tiempo
+            </p>
+
+        
+
+
+<div style="height: 300px;"></div>
+<script src="manejarDoom.js"></script>
+</body>
+</html>
