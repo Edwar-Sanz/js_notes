@@ -4,8 +4,7 @@
 //------------------------------------------------------------------------
 //for...in:	recorre cada clave del objeto iterable
 for (const key in ["a", "b"]) {console.log(key);}//retorna 0 1
-
-
+for (const key in "ab") {console.log(key);} // retorna 0 1
 for (const key in {"a":1, "b":2}) {console.log(key);}//retorna a b
 
 

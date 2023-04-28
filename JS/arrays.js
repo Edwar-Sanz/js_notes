@@ -110,7 +110,7 @@ const condicion = (i) => i < 40;
 const nums = [1, 30, 39, 29, 10, 13];
 nums.every(condicion); // true
 
-//verdadero si contiene el elemento
+//buscar elemento, verdadero si contiene el elemento
 [1,2,3].includes(2); //true
 
 

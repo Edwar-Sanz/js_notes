@@ -34,7 +34,7 @@ let valorDelElemnto = elemnto.valueOf() // retorna "hola"
 //mayusculas
 "HoLa".toUpperCase(); //retorna "HOLA"
 
-// repeat() repite una cadena x veces 
+// repeat() repite - multiplica una cadena x veces 
 "hola".repeat(3); // retrona "hola hola hola "
 
 //padEnd() rellena la cadena con otra hasta que alcance la longitud dada
