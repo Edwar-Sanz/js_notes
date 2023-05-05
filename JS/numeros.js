@@ -1,5 +1,6 @@
 //--------numeros----------------------------
 
+// % residuo de una división
 
 // Number.NaN equivale a NaN
 let nonNumber = NaN;
@@ -87,7 +88,7 @@ Math.sign(x);
 //Devuelve la raíz cuadrada positiva de un número.
 Math.sqrt(x);
 
-//Devuelve la parte entera del número x, la eliminación de los dígitos fraccionarios.
+//Devuelve la parte entera del número x, la eliminación decimales.
 Math.trunc(x);
 
 

@@ -1,0 +1,5 @@
+
+# CREAR SOLICITUDES
+POST http://localhost:3000/
+
+
