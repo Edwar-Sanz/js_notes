@@ -1,12 +1,12 @@
 {
-  "name": "mypaquete",
+  "name": "proyectoexpress",
   "version": "1.0.0",
-  "description": "Paquete de prueba",
-  "main": "index.js",
+  "description": "primeras pruebas",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "edwarSanz",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
