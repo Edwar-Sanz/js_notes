@@ -13,4 +13,6 @@ Content-Type: application/json
   "last_name": "perez"
 }
 
+###
+GET http://localhost:3000/api/datos/professors/2
 

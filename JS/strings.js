@@ -17,7 +17,7 @@
 // concat() une o concatena dos o mas cadenas
 "hola".concat(" ", "mundo"); // retorna "hola mundo"
 
-//replace() reemplaza una cadena con otra
+//replace() reemplaza una cadena con otra o expresión regular
 "hola ".replace("a", "4"); // retorna "hol4"
 
 //elimina los espacios, tambien existe .trimStart .trimEnd
@@ -65,9 +65,13 @@ let valorDelElemnto = elemnto.valueOf() // retorna "hola"
 //length retorna la longitud de la cadena
 "holaaa".length //retorna 6
 
-// .search  retorna el indice de la primera coincidencia de la cadena
-"holaaa".indexOf("a"); // retorna 3, la primera coincidencia de "a"
 
+// .search  retorna el indice de la primera coincidencia de la cadena
+let texto = "Hola Mundo!"; 
+texto.search("Mundo"); // retorna 5
+str.search(expresionregular)
+
+"holaaa".indexOf("a"); // retorna 3, la primera coincidencia de "a"
 
 //-------------comparaciones-----------------
 

@@ -7,13 +7,13 @@ const datos = {
         "last_name": "Lawson",
     },
     {
-        "id": 2,
+        "id": 3,
         "email": "lindsay.ferguson@reqres.in",
         "first_name": "Lindsay",
         "last_name": "Ferguson",
     },
     {
-        "id": 3,
+        "id": 2,
         "email": "tobias.funke@reqres.in",
         "first_name": "Tobias",
         "last_name": "Funke",
