@@ -2,6 +2,10 @@
 const express = require("express");
 const app = express(); // creando la app
 
+// notas: res.json ganantiza que la respuesta sea json
+// res.end permite enviar una respuesta vacía
+
+
 //importando los datos del ejemplo
 const {datos} = require("./datos.js");
 
@@ -12,11 +16,11 @@ app.use("/api/datos/professors", pathProfessors);
 
 //------routing----------------------------------------------------------
 
-//----------- manejando el metodo get--------------------------------
+//----------- manejando el metodo get-------read-------------------------
 app.get("/",(req, res)=>{res.send("Api Home")});
 
 // enviando los datos
-app.get("/api/datos",(req, res)=>{res.send(JSON.stringify(datos))});
+app.get("/api/datos",(req, res)=>{res.send(datos)});
 
 //--------parámetros en la URL-----------------------------------
 
@@ -38,19 +42,19 @@ pathProfessors.get("/:id",
 function ordenarId(req, res, obj){
   console.log(req.query.ordenar)
   if(req.query.ordenar === "ascendente"){
-    return res.send(JSON.stringify(
+    return res.send(
       obj.sort( (current, next) => 
       current.id - next.id  
       )
-    ));
+    );
   }else if(req.query.ordenar === "descendente"){
-    return res.send(JSON.stringify(
+    return res.send(
       obj.sort( (current, next) => 
         next.id - current.id  
       )
-    ));
+    );
   }else{
-    return res.send(JSON.stringify(obj))
+    return res.send(obj)
   }
 }
 pathProfessors.get("/",
@@ -60,10 +64,47 @@ pathProfessors.get("/",
   }
 );
 
-//----------- manejando el metodo get--------------------------------
+//----------- manejando post----------create----------------------
+pathProfessors.use(express.json());
+pathProfessors.post("/", (req, res)=>{
+  let newTeacher = req.body
+  datos.professors.push(newTeacher);
+  res.send(datos.professors)
+});
+//----------- manejando put-------update-------------------------
+//put para actualizar todos los parámetros
+pathProfessors.put("/:id", (req, res)=>{ //tomando parametro id
+  const updateTeacher = req.body; // obtenemos el item actualizado del cuerpo de la solicitud
+  const id = req.params.id;   // guardamos el valor del parametro de la URL
+  const indice = datos.professors.findIndex(item => item.id === Number(id)) // buscamos el indice que sea igual al del parámetro
+  if(indice >= 0) {datos.professors[indice] = updateTeacher} // actualizamos todo el objeto
+  res.send(datos.professors); //retornamos el nuevo objeto actualizado
+});
 
+//----------- manejando PATCH----update-------------------------
+// patch solo actualizar algunos parámetros
+pathProfessors.patch("/:id", (req, res)=>{ //tomando parametro id
+  const updateInfo = req.body; // obtenemos el item actualizado del cuerpo de la solicitud
+  const id = req.params.id;   // guardamos el valor del parametro de la URL
+  const indice = datos.professors.findIndex(item => item.id === Number(id)) // buscamos el indice que sea igual al del parámetro
+  
+  if(indice >= 0) { // actualizamos los valores dados
+    const elementToUpdate = datos.professors[indice];
+    Object.assign(elementToUpdate, updateInfo) 
+  } 
+  res.send(datos.professors); //retornamos el nuevo objeto actualizado
+});
 
-
+//----------- manejando delete----DELETE-------------------------
+pathProfessors.delete("/:id", (req, res)=>{ //tomando parametro id
+  const id = req.params.id;   // guardamos el valor del parametro de la URL
+  const indice = datos.professors.findIndex(item => item.id === Number(id)) // buscamos el indice que sea igual al del parámetro
+  
+  if(indice >= 0) { // eliminamos el indice
+    datos.professors.splice(indice, 1);
+  }
+  res.send(datos.professors); //retornamos el nuevo objeto actualizado
+});
 
 
 //---------------

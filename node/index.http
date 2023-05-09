@@ -1,9 +1,9 @@
 
 # CREAR SOLICITUDES
-PUT http://localhost:3000/data/professors
+PUT http://localhost:3000/api/data/professors
 
 ###
-POST http://localhost:3000/datos/students HTTP/1.1
+POST http://localhost:3000/api/datos/professors HTTP/1.1
 Content-Type: application/json
 
 {
@@ -16,3 +16,25 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/datos/professors/2
 
+###
+PUT  http://localhost:3000/api/datos/professors/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 4,
+  "email": "donactualizado@nasa.com",
+  "first_name": "don",
+  "last_name": "actualizado"
+}
+
+###
+PATCH http://localhost:3000/api/datos/professors/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "señoractualizado@nasa.com",
+  "first_name": "señor"
+}
+
+###
+DELETE http://localhost:3000/api/datos/professors/1 HTTP/1.1
