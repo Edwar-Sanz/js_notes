@@ -3,7 +3,42 @@
 
 // .match() utiliza una expresion regular y retorna un array con las coincidencias
 
+// regex.test("string")
 
+
+//resumen
+
+// caracter | descripción
+//    .     | Coincide con cualquier carácter
+//   \d     | Busca cualquier dígito [0-9]
+//   \D     | Busca cualquier caracter que no sea un dígito equivale a: [^0-9]
+//   \w     | Busca cualquier caracter alfanumérico equivale a: [A-Za-z0-9_]
+//   \W     | Busca cualquier caracter que no sea un caracter del alfabeto latino básico [^A-Za-z0-9_]
+//   \s     | Busca un solo caracter de espacio en blanco
+//   \S     | Busca un solo caracter que NO sea un espacio en blanco
+//   / /i   | búsqueda sin distinción entre mayúsculas y minúsculas
+//   / /g   | busca de forma global
+//   / /m   | búsqueda Multilinea, utiliza ^ y $
+//    ^     | Coincide con el comienzo de la entrada despues del salto de linea
+//    $     | Coincide con el final de la entrada despues del salto de linea
+//   \b     | Marca el límite de una palabra. 
+//   \B     | Coincide con un límite sin palabra.
+//  x(?=y)  | Coincide con "x" solo si "x" va seguida de "y"
+//  x(?!y)  | Coincide con "x" solo si "x" no va seguida de "y"
+//  (?<=y)x | Coincide con "x" solo si "x" va precedida  de "y"
+//  (?<!y)x | Coincide con "x" solo si "x" no va precedida  de "y"
+//   x|y    | Coincide con "x" o "y"
+//  [xyz]   | Coincide con cualquiera de los caracteres incluidos
+//  [^xyz]  | Coincide con cualquiera de los caracteres no incluidos
+//   (x)    | Grupo de captura
+//    x*    | cero o mas
+//    x+    | uno o mas
+//    x?    | cero o uno
+//   x{n}   | "n" apariciones del elemento "x"
+//   x{n,}  | al menos "n" apariciones del elemento "x"
+//  x{n,m}  | al menos "n" y como máximo "m"
+//    
+//-------------------------------------------------------------------------------------
 const textoPrueba = '1 CANTAR canto cantas canta cantamos cantáis cantan cante 8\n\
 2 Cantaré cantarás cantará cantaremos cantaréis cantarán 7\n\
 3 Cantabas cantaba cantábamos cantabais cantaban cantado 6\n\
@@ -54,20 +89,20 @@ console.log(resultAlternativas); // search retorna el indice de la primera coinc
 let whitespace = textoPrueba.match(/\s/g); 
 console.log(whitespace.length); //66
 
-// empieza por o termina por
+// indicar limites de la palabra
 let empieza = textoPrueba.search(/\bcanto/); 
 let termina = textoPrueba.search(/semos\b/); 
 console.log(empieza +" "+ termina)
 
 
-// buscar al menos una aparicion dentro del string
-let text = "Hellooo World! Hello Mundo"; 
-let result = text.match(/o+/g);
-// buscar una "l" seguida de una "0" o mas caracteres 
-let result2 = text.match(/lo*/g);
-
-
-
+let text = "a aa aaa"; 
+// uno o mas
+let result = text.match(/a+/g); // retorna a aa aaa
+// cero o mas
+let result2 = text.match(/a*/g); // retorna [ 'a', '', 'aa', '', 'aaa', '' ]
+// cero o uno
+let result3 = text.match(/a?/g); // retorna ['a', '', 'a', 'a', '', 'a', 'a', 'a', '']
+console.log(result); console.log(result2); console.log(result3);
 
 
 
