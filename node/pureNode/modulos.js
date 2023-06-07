@@ -1,6 +1,6 @@
-/*
-//console.log(process)
-//console.log(process.env) //informacion sobre en el entorno
+
+console.log(process)
+console.log(process.env) //informacion sobre en el entorno
 
 // retorna un array con los agumentos pasados en la linea de comandos
 // ejemplo abrir este archivo y escribir otros argumentos:
@@ -10,24 +10,24 @@ console.log(process.argv)
 for (let i = 2; i < process.argv; i++) { // a partir del indice 2 se puede acceder a los valores
   console.log(process.argv[i])
 }
-*/
+
 
 
 //-----------modulo os------------------
-/*
+
 const os = require("os")
 
 console.log(os.type()) // tipo del sistema operativo
 console.log(os.homedir())   //ruta del home
 console.log(os.uptime())    // tiempo que lleva el sistema funcionando
 console.log(os.userInfo())  // informacion del usuario
-*/
+
 //----------------------------------------
-/*
+
 setTimeout(() => { }, timeout); //ejecuta una función con retrazo
 setImmediate() // ejecuta lo antes posible el evento
 setInterval() // ejecuta un código infitas veces con un retrazo
-*/
+
 //-----------modulo fs----------
 // agregando Sync los metodos se comportan de forma síncrona
 
@@ -68,10 +68,8 @@ fs.writeFile("index.html", "nombreNuevo.html",
 
 //eliminar archivos
 fs.unlink("index.html",
-(err)=>{
-  if (err) {throw err}
-  console.log("Nombre cambiado exitosamente");
-}
-
-
+  (err)=>{
+    if (err) {throw err}
+    console.log("Archivo eliminado exitosamente");
+  }
 )

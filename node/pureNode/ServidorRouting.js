@@ -88,6 +88,6 @@ const server = http.createServer(
   }
 );
 const puerto = 3000
-server.listen(puerto, ()=>{ console.log("servidor activo") })
+server.listen(puerto, ()=>{ console.log("servidor activo en http://127.0.0.1:3000/") })
 
 
