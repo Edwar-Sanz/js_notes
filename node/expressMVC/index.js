@@ -2,9 +2,10 @@
 // npm install express
 
 const express = require("express"); // importar express
-const userRoutes = require("./routes/api"); // importar rutas
+const userRoutes = require("./routes/apiRoutes"); // importar rutas
 
-const app = express(); //crear app
+const app = express();   //crear app
+app.use(express.json()); //
 app.use("/", userRoutes); //asocia a "/" las rutas de la api
 
 const PORT = process.env.PORT || 8080; //puerto asignado o 8080

@@ -14,7 +14,7 @@ const {datos} = require("./datos.js");
 const pathProfessors = express.Router();
 app.use("/api/datos/professors", pathProfessors);
 
-//------routing----------------------------------------------------------
+//-------------------------------routing---------------------------------
 
 //----------- manejando el metodo get-------read-------------------------
 app.get("/",(req, res)=>{res.send("Api Home")});
