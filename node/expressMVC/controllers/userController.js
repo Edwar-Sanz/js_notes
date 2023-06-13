@@ -4,9 +4,9 @@
 */
 const {UserModel} = require("../models/UserModel"); //importar modelo
 
-// -------------------- controladores ----------------------------
+// -------------------- User Controler ----------------------------
 
-// ----------read------------------------
+// ----------read
 const getAllUsers = async (req, res) => {
   try{
     const users = await UserModel.findAll();
@@ -30,7 +30,7 @@ const getUsersById = async (req, res) => {
   }
 };
 
-// ---------create----------------------
+// ---------create
 const  addUser = async (req, res) => {
   try {
     const userName = req.body.userName;
@@ -43,7 +43,7 @@ const  addUser = async (req, res) => {
   }
 };
 
-// ---------update----------------------
+// ---------update
 const updateUsersById = async (req, res) => {
   try {
     const id = req.params.id;
@@ -60,7 +60,7 @@ const updateUsersById = async (req, res) => {
   }
 };
 
-// ---------delete----------------------
+// ---------delete
 const deleteUser = async (req, res) => {
   try{const id = req.params.id;
   const userDelete = await UserModel.destroy(
@@ -73,7 +73,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-//-------export------------------
+//-------export
 module.exports = {
   getAllUsers, getUsersById,
   addUser, updateUsersById, deleteUser

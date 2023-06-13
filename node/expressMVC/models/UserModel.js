@@ -6,6 +6,7 @@
 
 const Sequelize = require('sequelize');
 
+// conectar a la base de datos
 const sequelize = new Sequelize(
   'prueba_express', 'root', '123456789', 
   {
@@ -18,18 +19,23 @@ const sequelize = new Sequelize(
 const UserModel = sequelize.define('user', {
   userName: {
     type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  password: {
+    type: Sequelize.STRING,
     allowNull: false
   }
 });
 
-// Sincronización del modelo con la base de datos(parecido a la migracion)
-// sequelize.sync()
-//   .then(() => {
-//     console.log('Base de datos y tablas creadas');
-//   })
-//   .catch(error => {
-//     console.error('Error al sincronizar la base de datos:', error);
-//   });
+//Sincronización del modelo con la base de datos(parecido a la migracion)
+sequelize.sync()
+  .then(() => {
+    console.log('Base de datos y tablas creadas');
+  })
+  .catch(error => {
+    console.error('Error al sincronizar la base de datos:', error);
+  });
 
 
 

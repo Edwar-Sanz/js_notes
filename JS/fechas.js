@@ -7,8 +7,8 @@ function fechas (fecha){
     
 }
 
-let fechaActual = new Date();
-let infoFecha = new fechas(fechaActual);
+let myDate  = new Date();
+let infoFecha = new fechas(myDate);
 
 infoFecha.fecha //Sun Mar 26 2023 18:44:38 GMT-0500 (hora estándar de Colombia)
 
@@ -16,7 +16,7 @@ infoFecha.toDateString //'Sun Mar 26 2023'
 
 infoFecha.getFullYear   //2023
 
-
+// myDate.
 getDate() //devuelve el día del mes (1 a 31).
 getDay() //devuelve el número del día de la semana desde 0 (domingo) hasta 6 (sábado).
 getFullYear() //cuatro dígitos del año.

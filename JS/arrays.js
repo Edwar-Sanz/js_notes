@@ -32,13 +32,13 @@ arr.map((elem, index) => {
 });
 
 // aplica una funcion al acumulado de iterar por un array
-[1, 2, 3, 4].reduce( (acc, cur) => acc+cur); //retorna 10
+[1, 2, 3, 4].reduce( (accum, item) => accum+item); //retorna 10
 //tambien existe reduceRight()
 
 
 
 // ----------agregar----------------------------------------------------------------------
-
+let arrr = ["item0", "item1", "item2", "item3"];
 // push() añadir elemento al final
 arr.push("item4");
 
@@ -74,14 +74,14 @@ arr.indexOf("item3"); //retorna 3
 // find() devuelve el primer elemento que cumpla la condicion de la función de prueba proporcionada
 [5, 12, 8, 130].find(i => i > 10); //retorna 12
 
-//retorna el primer elemento que cumpla la condicion
+//retorna los elementos que cumpla la condicion
 //const nums1 = [1, 10, 20, 35, 40, 50];
-[1,20,300].filter(i => i < 30); // 1;
-// para obtener el indice se usa .findIndex()
+[1,20, 2, 300, 3].filter(i => i < 30); // 1, 2, 3;
+// para obtener el indice del primero que cumpla con la condición se usa .findIndex()
 [1,20,300].findIndex(i => i < 30); // 0;
 
 // ----------crear----------------------------------------------------------------------
-
+//******** */
 // crea un array a partir de datos
 Array.of(1,2, "tres"); //[1, 2, "tres"];
 
@@ -151,7 +151,7 @@ array1.fill(0, 2, 4); // [1, 30, 0, 0]
 //crear objetoIterador
 const array = ['a', 'b', 'c'];
 const iterator1 = array1.entries(); //crea el objeto
-iterator1.next().value // para acceder a los valores ne hace con .next().value
+iterator1.next().value // para acceder a los valores se hace con .next().value
 // tambien se puede acceder con un bucle for...of
 
 //retorna un objeto iterador con los indices de un array
@@ -159,9 +159,9 @@ const itera = ['a', 'b', 'c'].keys();
 //se puede acceder a el con un bucle for...of
 
 //crea un iterador con los valores del array
-const iter = ['a', 'b', 'c', 'a'].values
+const iterable2 = ['a', 'b', 'c', 'a'].values
 //se accede mediante .next().value
-iter.next().value
+iterable2.next().value
 
 
 
