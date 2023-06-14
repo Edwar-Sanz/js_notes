@@ -27,15 +27,17 @@ const User = sequelize.define('Usersjwt', {
 });
 //------------------------------------------------------------------------------------------
 // Sincronización del modelo con la base de datos (parecido a la migración)
-sequelize.sync()
-  .then(() => {
+const syncDatabase = async () => {
+  try {
+    await sequelize.sync();
     console.log('Base de datos y tablas creadas');
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('Error al sincronizar la base de datos:', error);
-  });
+  }
+};
+syncDatabase();
+console.log("*****************************************************************************")
 //------------------------------------------------------------------------------------------
-
 
 const app = express();
 app.use(bodyParser.json());
@@ -73,53 +75,48 @@ app.post('/api/register', async (req, res) => {
 
 
 //----------  Ruta de inicio de sesión ---------- 
-app.post("/api/login", (req, res) => {
-  User.findOne({ where: { username: req.body.username } }) // buscar el usuario con el ORM
-    .then((user) => {
-      if (!user) { 
+app.post("/api/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { username: req.body.username } }); // buscar el usuario con el ORM
+    if (!user) {
+      return res.status(401).json({ message: 'Inicio de sesión fallido' });
+    }
+    bcrypt.compare(req.body.password, user.password, (err, result) => { // si lo encuentra desencripta la contraseña
+      if (err || !result) {
         return res.status(401).json({ message: 'Inicio de sesión fallido' });
       }
 
-      bcrypt.compare(req.body.password, user.password, (err, result) => { // si lo encuentra desencripta la contraseña
-        if (err || !result) {
-          return res.status(401).json({ message: 'Inicio de sesión fallido' });
-        }
-
-        jwt.sign({username: user.username }, 'secretKey', { expiresIn: '30s' },(err, token)=>{ //genera token
-          return res.status(200).json({ token: token }); //retorna el token
-
-        }); 
+      jwt.sign({ username: user.username }, 'secretKey', { expiresIn: 120 }, (err, token) => {
+        return res.status(200).json({ token: token }); //retorna el token
       });
-    })
-    .catch((error) => {
-      return res.status(500).json({ message: 'Error en el servidor' });
     });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error en el servidor' });
+  }
 });
 
 
-app.get('/protected', 
-  (req, res, next)=>{
-    const bearerHeader = req.headers["authorization"];
-    if ( typeof(bearerHeader) !== "undefined" ){
-      const bearerToken = bearerHeader.split(" ")[1];
-      req.token = bearerToken;
-      next();
-      
-    }else{
-      res.sendStatus(403);
+app.get('/protected', (req, res) => {
+  try {
+    const bearerToken = req.headers["authorization"].split(" ")[1];
+    
+    if (typeof bearerToken === "undefined") {
+      return res.sendStatus(403);
     }
-  },
-  (req, res)=>{
-    jwt.verify(req.token, "secretKey",
-    (error)=>{
-        if (error) {res.sendStatus(403);
-        }else{
-          return res.status(200).json({ mensaje:"Acceso permitido"});
-        }
+    jwt.verify(bearerToken, "secretKey", (error) => {
+      if (error) {
+        return res.status(403).json({ error: error.message });
+      } else {
+        return res.status(200).json({ mensaje: "Acceso permitido" });
       }
-    );
+      });
+  } catch (error) {
+    
+    console.log("**********ERROR********** " + error);
+    return res.status(500).send({ error: error.message });
   }
-);
+});
+
 
 
 app.listen(3000, () => {
