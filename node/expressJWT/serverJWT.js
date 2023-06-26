@@ -14,7 +14,7 @@ const sequelize = new Sequelize('logindb', 'root', '123456789',
 );
 //------------------------------------------------------------------------------------------
 // Definir el modelo de Usuario
-const User = sequelize.define('Usersjwt', {
+const UserModell = sequelize.define('Usersjwt', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -52,7 +52,7 @@ app.get("/api", (req, res)=>{
 
 app.post('/api/register', async (req, res) => {
   try {
-    const existingUser = await User.findOne( // usa el ORM para buscar en el modelo User
+    const existingUser = await UserModell.findOne( // usa el ORM para buscar en el modelo UserModell
       { 
         where: { username: req.body.username } 
       }
@@ -61,7 +61,7 @@ app.post('/api/register', async (req, res) => {
       return res.status(409).json({ message: 'El usuario ya existe' });
     }
 
-    const newUser = await User.create({ // usa el ORM para crear el usuario si no existe
+    const newUser = await UserModell.create({ // usa el ORM para crear el usuario si no existe
       username: req.body.username,
       password: await bcrypt.hash(req.body.password, 10), //encripta el password
     });
@@ -77,7 +77,7 @@ app.post('/api/register', async (req, res) => {
 //----------  Ruta de inicio de sesión ---------- 
 app.post("/api/login", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { username: req.body.username } }); // buscar el usuario con el ORM
+    const user = await UserModell.findOne({ where: { username: req.body.username } }); // buscar el usuario con el ORM
     if (!user) {
       return res.status(401).json({ message: 'Inicio de sesión fallido' });
     }
